@@ -13,8 +13,8 @@ import sendingSound from '../audio/sending.mp3';
 import logoutSound from '../audio/logout.mp3';
 import ActiveFriend from './ActiveFriend';
 import ForCall from './ForCall';
-import { local } from '../api/api'
-const production = '//backend-azure-two.vercel.app'
+import { local, production } from '../api/api'
+
 const Messenger = () => {
     const [notificationSPlay] = useSound(notificationSound);
     const [sendingSPlay] = useSound(sendingSound);
@@ -30,7 +30,7 @@ const Messenger = () => {
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io(`ws://backend-azure-two.vercel.app`);
+        socket.current = io(production);
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         })
