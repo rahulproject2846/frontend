@@ -1,7 +1,7 @@
 import {api} from '../../api/api'
 import { FRIENDS_GET_SUCCESS, MESSAGE_GET_SUCCESS, MESSAGE_SEND_SUCCESS } from "../types/messengerType";
 export const getFriends = () => async (dispatch) => {
-
+    console.log(api)
     try {
         const response = await api.get('/api/messenger/get-friends');
         dispatch({
