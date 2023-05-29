@@ -13,6 +13,7 @@ import sendingSound from '../audio/sending.mp3';
 import logoutSound from '../audio/logout.mp3';
 import ActiveFriend from './ActiveFriend';
 import ForCall from './ForCall';
+import { local, production } from '../api/api'
 
 const Messenger = () => {
     const [notificationSPlay] = useSound(notificationSound);
@@ -29,7 +30,7 @@ const Messenger = () => {
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io('/');
+        socket.current = io(production);
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         })
