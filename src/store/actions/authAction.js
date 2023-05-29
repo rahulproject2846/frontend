@@ -2,14 +2,8 @@ import {api} from '../../api/api'
 import { REGISTER_FAIL,REGISTER_SUCCESS, USER_LOGIN_SUCCESS, USER_LOGIN_FAIL} from "../types/authType";
 export const userRegister = (data) => {
     return async (dispatch) => {
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/josn'
-            }
-        } 
         try {
-            const response = await api.post('/api/messenger/user-register', data, config);
+            const response = await api.post('/api/messenger/user-register', data);
             
             localStorage.setItem('authToken', response.data.token);
 
@@ -35,15 +29,8 @@ export const userRegister = (data) => {
 
 export const userLogin = (data) => {
     return async (dispath) => {
-
-        const config = {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }
-
         try {
-            const response = await api.post('/api/messenger/user-login', data, config);
+            const response = await api.post('/api/messenger/user-login', data);
             localStorage.setItem('authToken', response.data.token);
             dispath({
                 type: USER_LOGIN_SUCCESS,
