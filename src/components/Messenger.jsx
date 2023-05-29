@@ -30,7 +30,13 @@ const Messenger = () => {
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io(`wss://backend-azure-two.vercel.app`);
+        socket.current = io(production, {
+            withCredentials: true,
+            extraHeaders: {
+                Authorization: `Bearer ${localStorage.getItem('authToken')}`
+            },
+            transports: ['websocket', 'polling', 'flashsocket'],
+        });
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         })
