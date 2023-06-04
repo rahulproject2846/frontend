@@ -30,7 +30,7 @@ const Messenger = () => {
     const socket = useRef();
 
     useEffect(() => {
-        socket.current = io('wss://backend-azure-two.vercel.app');
+        socket.current = io(production);
         socket.current.on('getMessage', (data) => {
             setSocketMessage(data);
         })
